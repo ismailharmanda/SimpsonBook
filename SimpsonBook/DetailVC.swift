@@ -9,6 +9,8 @@ import UIKit
 
 class DetailVC: UIViewController {
     
+    var selectedSimpson: Simpson?
+    
     
     
 
@@ -20,6 +22,12 @@ class DetailVC: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        if selectedSimpson != nil {
+            imageView.image = selectedSimpson?.image
+            nameLabel.text = selectedSimpson?.name
+            jobLabel.text = selectedSimpson?.job
+        }
     }
     
 

@@ -15,6 +15,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let Marge = Simpson(name: "Marge Simpson", job: "Housewife", image: "marge")
     let Lisa = Simpson(name: "Lisa Simpson", job: "Student", image: "lisa")
     
+    var selectedSimpson: Simpson?
+    
     var simpsons: [Simpson] = [Simpson]()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -29,6 +31,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         cell.contentConfiguration = content
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        selectedSimpson = simpsons[indexPath.row]
+        
+        performSegue(withIdentifier: "toDetailVC", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toDetailVC"{
+            let destinationVC = segue.destination as! DetailVC
+            
+            destinationVC.selectedSimpson = selectedSimpson
+        }
     }
     
     
